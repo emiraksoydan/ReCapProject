@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -18,44 +20,48 @@ namespace Business.Concrete
             this.icardal = icardal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if((car.Description).Length >= 2 && car.DailyPrice > 0)
             {
                 icardal.Add(car);
+                
             }
+            return new SuccessResult(true,Messages.SuccessAdd);
         }
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             
-                icardal.Delete(car);   
+            icardal.Delete(car);
+            return new SuccessResult(true,Messages.SuccessDelete);
             
         }
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
 
             icardal.Update(car);
+            return new SuccessResult(true,Messages.SuccessUpdate);
 
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return icardal.GetAll();
+            return new SuccessDataResult<List<Car>>(icardal.GetAll(),Messages.SuccessGetCarList);
         }
 
-        public List<Car> GetCarsByBrandId(int Brandid)
+        public IDataResult<List<Car>> GetCarsByBrandId(int Brandid)
         {
-            return icardal.GetAll(p=>p.BrandId == Brandid).OrderByDescending(p=>p.Description).ToList();
+            return new SuccessDataResult<List<Car>>(icardal.GetAll(p=>p.BrandId == Brandid).OrderByDescending(p=>p.Description).ToList(),Messages.SuccessGetCarList);
         }
 
-        public List<Car> GetCarsByColorId(int Colorid)
+        public IDataResult<List<Car>> GetCarsByColorId(int Colorid)
         {
-            return icardal.GetAll(p => p.ColorId == Colorid);
+            return new SuccessDataResult<List<Car>>(icardal.GetAll(p => p.ColorId == Colorid),Messages.SuccessGetCarListByColorId);
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return icardal.GetAllCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(icardal.GetAllCarDetails(),Messages.SuccessGetCarList);
         }
     }
 }
