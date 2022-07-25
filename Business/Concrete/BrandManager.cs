@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,15 +22,16 @@ namespace Business.Concrete
             _ibranddal = ibranddal;
         }
 
-        public IResult Add(Brand car)
+        public IResult Add(Brand brand)
         {
-            _ibranddal.Add(car);
+            ValidationTool.Validate(new BrandValidator(), brand);
+            _ibranddal.Add(brand);
             return new Result(true);
         }
 
-        public IResult Delete(Brand car)
+        public IResult Delete(Brand brand)
         {
-            _ibranddal.Delete(car);
+            _ibranddal.Delete(brand);
             return new Result(true);
         }
 
@@ -42,9 +45,9 @@ namespace Business.Concrete
             return new SuccessDataResult<Brand>(_ibranddal.Get(b=>b.BrandId == id));
         }
 
-        public IResult Update(Brand car)
+        public IResult Update(Brand brand)
         {
-            _ibranddal.Update(car);
+            _ibranddal.Update(brand);
             return new Result(true);
         }
     }

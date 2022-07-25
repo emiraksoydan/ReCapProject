@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,6 +23,7 @@ namespace Business.Concrete
 
         public IResult AddCustomer(Customer customer)
         {
+            ValidationTool.Validate(new CustomerValidator(), customer);
             customerdal.Add(customer);
             return new SuccessResult(true);
         }
