@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -20,19 +21,13 @@ namespace Business.Concrete
         {
             this.rentalDal = rentalDal;
         }
-
+        [ValidationAspect(typeof(RentalManager))]
         public IResult AddRental(Rental rentalcar)
         {
 
-            ValidationTool.Validate(new RentalValidator(), rentalcar);
             rentalDal.Add(rentalcar);
             return new SuccessResult(true);
-
-
-
-
         }
-
         public IResult DeleteRental(Rental rentalcar)
         {
             rentalDal.Delete(rentalcar);
