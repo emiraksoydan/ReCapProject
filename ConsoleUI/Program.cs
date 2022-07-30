@@ -99,30 +99,30 @@ void caroperations(){
    
 }
 
-void Brandoperations()
-{
-    Brand brandobject = new Brand() { BrandId = 4, BrandName = "Aston Martin"};
-    Brand brandobject2 = new Brand() { BrandName = "TOGG" };
-    BrandManager ibrandmanager = new BrandManager(new EfBrandDal());
-    //ibrandmanager.Add(brandobject);
-    //ibrandmanager.Add(brandobject2);
-    //ibrandmanager.Delete(brandobject);
-    ibrandmanager.Update(brandobject);
-    var result = ibrandmanager.GetAll();
-    if(result.Success == true)
-    {
-        foreach (var brand in result.Data)
-        {
-            Console.WriteLine(brand.BrandName);
-        }
-        Console.WriteLine(result.Message);
+//void Brandoperations()
+//{
+//    Brand brandobject = new Brand() { BrandId = 4, BrandName = "Aston Martin"};
+//    Brand brandobject2 = new Brand() { BrandName = "TOGG" };
+//    BrandManager ibrandmanager = new BrandManager(new EfBrandDal());
+//    //ibrandmanager.Add(brandobject);
+//    //ibrandmanager.Add(brandobject2);
+//    //ibrandmanager.Delete(brandobject);
+//    ibrandmanager.Update(brandobject);
+//    var result = ibrandmanager.GetAll();
+//    if(result.Success == true)
+//    {
+//        foreach (var brand in result.Data)
+//        {
+//            Console.WriteLine(brand.BrandName);
+//        }
+//        Console.WriteLine(result.Message);
 
-    }
-    else
-    {
-        Console.WriteLine(result.Message);
-    }
+//    }
+//    else
+//    {
+//        Console.WriteLine(result.Message);
+//    }
 
-    //Console.WriteLine(ibrandmanager.GetBrandByBrandId(1003).BrandName);
+//    //Console.WriteLine(ibrandmanager.GetBrandByBrandId(1003).BrandName);
 
-}
+//}
