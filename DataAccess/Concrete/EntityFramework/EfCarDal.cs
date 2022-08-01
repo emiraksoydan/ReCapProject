@@ -23,7 +23,9 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.BrandId equals b.BrandId
                              join col in reCapContextDal.Colors
                              on c.ColorId equals col.ColorId
-                             select new CarDetailDto { BrandName = b.BrandName, CarId = c.Id, DailyPrice = c.DailyPrice, ColorName = col.ColorName };
+                             join im in reCapContextDal.CarImages
+                             on c.Id equals im.CarId
+                             select new CarDetailDto {FilePath = im.ImagePath ?? "", BrandName = b.BrandName, CarId = c.Id, DailyPrice = c.DailyPrice, ColorName = col.ColorName };
                 return result.ToList();
             }
             
