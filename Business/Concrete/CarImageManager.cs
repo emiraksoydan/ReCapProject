@@ -1,8 +1,11 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Business;
+using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,25 +17,30 @@ namespace Business.Concrete
     public class CarImageManager : ICarImageService
     {
         ICarImageDal _icarimagedal;
+        IFileHelper _fileHelper;
 
-        public CarImageManager(ICarImageDal icarimagedal)
+        public CarImageManager(ICarImageDal icarimagedal,IFileHelper fileHelper)
         {
             _icarimagedal = icarimagedal;
+            _fileHelper = fileHelper;
         }
 
-        public IResult Add(CarImage carimage)
+        public IResult Add(IFormFile file,CarImage carimage)
         {
             var result = BusinessRules.Run(CheckCarImageCount(carimage.CarId));
             if(result != null)
             {
                 return result;
             }
+            carimage.ImagePath = _fileHelper.Upload(file, PathConstants.ImagesPath);
+            carimage.Date = DateTime.Now;
             _icarimagedal.Add(carimage);
             return new SuccessResult(true);
         }
 
         public IResult Delete(CarImage carimage)
         {
+            _fileHelper.Delete(PathConstants.ImagesPath + carimage.ImagePath);
             _icarimagedal.Delete(carimage);
             return new SuccessResult(true);
         }
@@ -57,8 +65,9 @@ namespace Business.Concrete
             return new SuccessDataResult<CarImage>(_icarimagedal.Get(p=>p.Id==id));
         }
 
-        public IResult Update(CarImage carimage)
+        public IResult Update(IFormFile file,CarImage carimage)
         {
+            carimage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carimage.ImagePath, PathConstants.ImagesPath);
             _icarimagedal.Update(carimage);
             return new SuccessResult(true);
         }

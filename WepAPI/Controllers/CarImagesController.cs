@@ -47,9 +47,9 @@ namespace WepAPI.Controllers
             return BadRequest();
         }
         [HttpPost("Add")]
-        public IActionResult Add(CarImage carimage)
+        public IActionResult Add([FromForm(Name = "Image")] IFormFile file,CarImage carimage)
         {
-            var result = _icarservice.Add(carimage);
+            var result = _icarservice.Add(file,carimage);
             if (result.Success)
             {
                 return Ok(result);
@@ -59,7 +59,8 @@ namespace WepAPI.Controllers
         [HttpPost("Delete")]
         public IActionResult Delete(CarImage carimage)
         {
-            var result = _icarservice.Delete(carimage);
+            var cardeleteimage = _icarservice.GetByImageId(carimage.Id).Data;
+            var result = _icarservice.Delete(cardeleteimage);
             if (result.Success)
             {
                 return Ok(result);
@@ -67,9 +68,9 @@ namespace WepAPI.Controllers
             return BadRequest();
         }
         [HttpPost("Update")]
-        public IActionResult Update(CarImage carimage)
+        public IActionResult Update([FromForm] IFormFile file,CarImage carimage)
         {
-            var result = _icarservice.Update(carimage);
+            var result = _icarservice.Update(file,carimage);
             if (result.Success)
             {
                 return Ok(result);
