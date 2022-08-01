@@ -17,5 +17,7 @@ namespace Entities.DTOs
 
         public string ColorName { get; set; }
 
+        public string FilePath { get; set; }
+
     }
 }

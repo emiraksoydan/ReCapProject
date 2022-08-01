@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <None Include="wwwroot\DefaultImage.jpg" />
-    <None Include="wwwroot\Uploads\Images\lambo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +19,10 @@
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Uploads\Images\" />
   </ItemGroup>
 
 </Project>

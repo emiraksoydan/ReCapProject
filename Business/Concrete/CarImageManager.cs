@@ -77,7 +77,7 @@ namespace Business.Concrete
             var result = _icarimagedal.GetAll(p=>p.CarId == carid).Count;
             if(result >= 5)
             {
-                return new ErrorResult(false);
+                return new ErrorResult(Messages.Error);
             }
             return new SuccessResult(true);
         }
@@ -95,7 +95,7 @@ namespace Business.Concrete
             {
                 return new SuccessResult(true);
             }
-            return new ErrorResult(false);
+            return new ErrorResult();
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Business.Constants
         public static string SuccessGetCarListByBrandId = "Arabalar Markaya göre Getirildi";
         public static string SuccessGetCarListByColorId = "Arabalar Renge göre Getirildi";
         public static string SuccessGetCarBrandList = "Araba Markaları Geldi";
-
-
+        internal static string Error = "Hata";
     }
 }
