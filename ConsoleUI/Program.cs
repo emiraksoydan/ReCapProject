@@ -13,8 +13,8 @@ UserAndRentOperation();
 
 void UserAndRentOperation()
 {
-    User user = new User() { Email = "asdasd", FirstName = "emir", LastName = "asda", Password = "3434abc" };
-    User user2 = new User() { Email = "asdasasdd", FirstName = "emirasd", LastName = "asasdda", Password = "3434abcasd" };
+    User user = new User() { Email = "asdasd", FirstName = "emir", LastName = "asda" };
+    User user2 = new User() { Email = "asdasasdd", FirstName = "emirasd", LastName = "asasdda" };
 
     Customer customer = new Customer() { CompanyName = "asda", UserId = 1 };
     Customer customer2 = new Customer() { CompanyName = "asda", UserId = 2 };
