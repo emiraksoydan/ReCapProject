@@ -17,5 +17,7 @@ namespace Business.Abstract
         IResult DeleteUser(User user);
         IResult UpdateUser(User user);
 
+        IDataResult<List<OperationClaimDto>>(User user);
+
     }
 }
