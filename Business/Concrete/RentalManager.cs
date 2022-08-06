@@ -21,7 +21,7 @@ namespace Business.Concrete
         {
             this.rentalDal = rentalDal;
         }
-        [ValidationAspect(typeof(RentalManager))]
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult AddRental(Rental rentalcar)
         {
 

@@ -14,7 +14,6 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(p => p.UserId).NotEmpty();
             RuleFor(p => p.CompanyName).NotEmpty();
-            RuleFor(p => p.Id).NotEmpty();
         }
     }
 }
