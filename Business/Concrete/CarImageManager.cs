@@ -35,14 +35,14 @@ namespace Business.Concrete
             carimage.ImagePath = _fileHelper.Upload(file, PathConstants.ImagesPath);
             carimage.Date = DateTime.Now;
             _icarimagedal.Add(carimage);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
 
         public IResult Delete(CarImage carimage)
         {
             _fileHelper.Delete(PathConstants.ImagesPath + carimage.ImagePath);
             _icarimagedal.Delete(carimage);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
 
         public IDataResult<List<CarImage>> GetAll()
@@ -69,7 +69,7 @@ namespace Business.Concrete
         {
             carimage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carimage.ImagePath, PathConstants.ImagesPath);
             _icarimagedal.Update(carimage);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
 
         private IResult CheckCarImageCount(int carid)
@@ -79,7 +79,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.Error);
             }
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
         private IDataResult<List<CarImage>> DefaultImage(int carid)
         {
@@ -93,7 +93,7 @@ namespace Business.Concrete
             var result = _icarimagedal.GetAll(p => p.CarId == carid).Count;
             if(result > 0)
             {
-                return new SuccessResult(true);
+                return new SuccessResult();
             }
             return new ErrorResult();
         }

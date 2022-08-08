@@ -26,13 +26,18 @@ namespace Business.Concrete
         public IResult AddUser(User user)
         {
             userDal.Add(user);
-            return new SuccessResult(true);
+            return new SuccessResult();
+        }
+
+        public IDataResult<User> CheckByEmail(string email)
+        {
+            return new SuccessDataResult<User>(userDal.Get(p => p.Email == email));
         }
 
         public IResult DeleteUser(User user)
         {
             userDal.Delete(user);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
 
         public IDataResult<List<User>> GetAllUser()
@@ -46,15 +51,15 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(userDal.Get(p => p.Email == email));
         }
 
-        public IDataResult<List<OperationClaimDto>> GetClaims(User user)
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
         {
-            return new SuccessDataResult<List<OperationClaimDto>>(userDal.GetClaims(user));
+            return new SuccessDataResult<List<OperationClaim>>(userDal.GetClaims(user));
         }
 
         public IResult UpdateUser(User user)
         {
             userDal.Update(user);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
     }
 }

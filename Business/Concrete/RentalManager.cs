@@ -26,12 +26,12 @@ namespace Business.Concrete
         {
 
             rentalDal.Add(rentalcar);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
         public IResult DeleteRental(Rental rentalcar)
         {
             rentalDal.Delete(rentalcar);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
 
         public IDataResult<List<Rental>> GetAllRental()
@@ -47,7 +47,7 @@ namespace Business.Concrete
         public IResult UpdateRental(Rental rentalcar)
         {
             rentalDal.Update(rentalcar);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
     }
 }

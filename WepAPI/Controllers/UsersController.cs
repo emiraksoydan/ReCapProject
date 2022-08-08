@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +51,16 @@ namespace WepAPI.Controllers
         public IActionResult Update(User user)
         {
             var result = _userService.UpdateUser(user);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+        [HttpGet("getclaimdetail")]
+        public IActionResult Get(User user)
+        {
+            var result = _userService.GetClaims(user);
             if (result.Success)
             {
                 return Ok(result);

@@ -26,13 +26,13 @@ namespace Business.Concrete
         {
             
             customerdal.Add(customer);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
 
         public IResult DeleteCustomer(Customer customer)
         {
             customerdal.Delete(customer);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
 
         public IDataResult<List<Customer>> GetAllCustomer()
@@ -50,7 +50,7 @@ namespace Business.Concrete
         public IResult UpdateCustomer(Customer customer)
         {
             customerdal.Update(customer);
-            return new SuccessResult(true);
+            return new SuccessResult();
         }
     }
 }

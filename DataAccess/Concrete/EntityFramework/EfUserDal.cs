@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, ReCapContextDal>, IUserDal
     {
-        public List<OperationClaimDto> GetClaims(User user)
+        public List<OperationClaim> GetClaims(User user)
         {
             using (var context = new ReCapContextDal())
             {
@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join useroperationclaim in context.UserOperationClaims
                              on operationclaim.Id equals useroperationclaim.OperationClaimId
                              where useroperationclaim.UserId == user.Id
-                             select new OperationClaimDto { Name = operationclaim.Name,Email = user.Email,FirstName = user.FirstName,LastName = user.LastName,Status = user.Status,UserId = useroperationclaim.UserId };
+                             select new OperationClaim { Id= operationclaim.Id,Name = operationclaim.Name };
                 return result.ToList();
             }
         }
